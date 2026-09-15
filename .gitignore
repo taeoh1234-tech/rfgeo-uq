@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.log
+*.err
+*.aux
+*.out
+*.synctex.gz
+.DS_Store
+
+# regenerated datasets (see README)
+output_final/
+output_final_ood/
+output_beta*/

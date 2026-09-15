@@ -1,0 +1,693 @@
+% =====================================================================
+%  ICASSP 2027 submission -- v1 (2026-09-07)
+%  Source of truth: paper/icassp2027_v1.md  (transcribed 1:1; math notation
+%  converted, citation keys attached).  4 pages body + refs-only 5th page.
+%  Layout economy: \ninept body (spconf), \footnotesize captions,
+%  bibliography at 9pt (kit: >=9pt incl. captions; 2026-09-09),
+%  Table 1 \footnotesize, Table 2 (merged, table*) \scriptsize,
+%  tightened float seps.  Fig.1 full width, Fig.2 at 0.86\columnwidth.
+% =====================================================================
+\documentclass{article}
+\usepackage{spconf,amsmath,amssymb,graphicx,booktabs}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{figures/}}
+
+\def\x{\times}
+\newcommand{\etal}{\textit{et al.}}
+
+% ---- float-spacing economy ------------------------------------------
+\setlength{\textfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\dbltextfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.9}
+\setcounter{dbltopnumber}{3}\setcounter{topnumber}{4}
+
+% 제목 확정 (2026-09-08): U2 — 방법 for 과제 with 도구 형틀
+\title{LABEL-FREE UNCERTAINTY DIAGNOSTICS AND REPAIR FOR
+       NON-COOPERATIVE TDOA EMITTER GEOLOCATION}
+
+\name{Taeoh Kim, Han-Lim Choi}
+\address{Korea Advanced Institute of Science and Technology (KAIST),
+         Daejeon, Republic of Korea}
+
+\begin{document}
+\ninept
+\makeatletter\renewcommand\footnotesize{\@setfontsize\footnotesize\@ixpt{10.5}}\makeatother
+\maketitle
+% 수식 전후 여백 축소 (문안 불변 상쇄 — 2026-09-08). \ninept 이후에 두어야 유효.
+\abovedisplayskip=4pt plus 2pt minus 2pt
+\belowdisplayskip=4pt plus 2pt minus 2pt
+\abovedisplayshortskip=2pt plus 1pt
+\belowdisplayshortskip=2pt plus 1pt
+\renewcommand{\arraystretch}{0.95}
+
+% ---------------------------------------------------------------------
+\begin{abstract}
+We address conformal uncertainty quantification --- valid under
+exchangeability --- for non-cooperative emitter geolocation, where
+calibration needs labels the deployment cannot provide. In simulation, an evidential--conformal pipeline calibrated once and frozen
+loses coverage from $0.90$ to $0.19$ under a 3GPP channel-family change,
+and under strong multipath its median error grows ninefold while the head
+halves its uncertainty. The failure has a label-free signature: the head
+departs from the rule linking curve statistics to its reported uncertainty.
+On held-out shifts and seeds, three signals built from it detect each
+failing family; used as normalizers preassigned by family, they lift
+bandwidth loss from $0.49$ to $0.90$ at $2\%$ of the search area, the
+channel family only to $0.74$ in this study.
+\end{abstract}
+
+\begin{keywords}
+Emitter geolocation, TDOA, conformal prediction, uncertainty
+quantification, distribution shift
+\end{keywords}
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Radio-frequency emitter geolocation is observer-centric: rather than a
+device computing its own position, a receiver network estimates \emph{where
+an emitter is} from its emissions alone. Applications span regulatory
+enforcement, interference hunting, search-and-rescue and adversarial
+settings, where the emitter is non-cooperative --- unknown, faulty, or
+malicious~\cite{npj2026}. The need is operational: global navigation satellite system
+(GNSS) interference in the Baltic
+region is now localized in the field~\cite{gattis2026}, and
+aviation and shipping encounter it
+routinely~\cite{clements2023}.
+
+What separates this setting from acoustic source localization and from
+cooperative RF positioning is not the unknown waveform but the absent
+label. Uncertainty is not yet a standard axis of comparison there~\cite{grumiaux2022,pan2026,piyu2025}, and probabilistic outputs go uncalibrated~\cite{schymura2021}. Recent work giving
+localization estimates finite-sample validity operates where labels are
+scarce yet obtainable: semi-supervised formulations still use a small
+labelled set~\cite{rozenfeld2025,michael2026}, and field guidance advises
+\emph{playback from known positions} for
+calibration~\cite{kampe2026}. A non-cooperative emitter cannot be asked to play
+back from a known position. We therefore draw the calibration set from a synthetic generator, and the exchangeability that split
+conformal prediction relies on is broken by construction.
+
+We therefore treat distribution shift as the primary evaluation regime
+rather than a robustness afterthought: the conformal constant is calibrated
+once and \emph{frozen}, and both the predicted region and the learned
+uncertainty are measured as the deployment conditions move away from the
+calibration distribution. Coverage stays near nominal across the recalibrated
+configurations and collapses under several shifts when calibration is
+frozen (Sec.~\ref{sec:guarantee}). The consequential
+result is what the model \emph{says} while that happens: on the shifts that
+break coverage it under-reports its uncertainty (less than a third of what
+is called for), and under strong multipath lowers it outright while the
+error grows ninefold.
+
+We find that the failure leaves a measurable, label-free signature.
+In the calibration distribution the head follows a stable rule: its
+reported uncertainty is a function of three quality statistics of the
+generalized cross-correlation with phase transform (GCC-PHAT) curve it is given (cross-validated $R^2=0.54$--$0.60$). We fit
+that rule in-distribution and transfer it. Under shift the head
+\emph{violates its own rule}, reporting $1.4\x$ to $12\x$ less uncertainty
+than the rule implies, while staying faithful on a shift independently
+known to be benign ($0.96\x$) and over-alarming, correctly, at low
+signal-to-noise ratio (SNR)
+($1.7\x$). The violation is computed from the correlation curve and the
+head's own output --- no ground truth --- yet it tracks the coverage that
+does require ground truth (Spearman $0.74$ over eleven conditions).
+
+In this paper, we (i)~introduce a \emph{rule-transfer test} that measures,
+without labels, whether a deployed evidential head still obeys the
+input-to-uncertainty mapping it learned in distribution; (ii)~\emph{measure} that
+violation across propagation, bandwidth and hardware shifts, with matched
+positive and negative controls; and (iii)~build a \emph{graded response}
+from three label-free signals, each of which flags one failure family as a
+conformal abstention rule and repairs that same family as a conformal
+normalizer, so detection and correction share a signal instead of
+requiring separate machinery. How much repair is available is set by how
+far the shifted scores exceed the calibration support, and, under that
+fixed assignment, median corrected regions separate the families we repair
+from those we abstain on. Every operating point is frozen before evaluation and
+confirmed on held-out generation seeds. We do not claim localization
+accuracy: on this synthetic data --- whose forward model classical estimators
+invert exactly~\cite{chan1994} --- grid-search SRP-PHAT~\cite{dibiase2001} is more accurate
+(median 7.9\,m vs.\ 150.3\,m). Yet the classical route does not escape this
+problem: a 20\,m receiver-survey error collapses its coverage
+from 0.887 to 0.523 while its confidence statistic stays blind
+(area under the ROC curve, AUROC, 0.50), and no learned rule is left to diagnose.
+
+% =====================================================================
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{fig1_pipeline}
+\vspace{-0.12in}
+\caption{Pipeline and evaluation. Everything through GCC-PHAT is fixed; the
+Cram\'er--Rao lower bound (CRLB) is an analytical reference for $\Sigma_a$. A shift enters at
+the generator (left); the same run is read
+twice: rule transfer (Sec.~\ref{sec:diag}) and coverage/abstention at
+frozen $Q$ (Sec.~\ref{sec:guarantee},~\ref{sec:detect}).}
+\label{fig:pipe}
+\end{figure*}
+
+\section{Problem Formulation and Setup}
+\label{sec:setup}
+
+\subsection{Problem statement}
+\label{sec:problem}
+Let $X\in\mathbb{R}^{6\x257}$ be the six GCC-PHAT~\cite{knapp1976} curves
+of one snapshot and $p\in\mathbb{R}^2$ the emitter position. A model
+outputs $\mu(X)$ and covariances $\Sigma_a(X)$, $\Sigma_e(X)$, which split
+conformal turns into a region $C_\alpha(X)$ satisfying
+$\mathbb{P}(p\in C_\alpha)\ge 1-\alpha$ whenever calibration and test data
+are exchangeable~\cite{angelopoulos2021}. Labelled pairs $(X,p)$ exist only
+under the synthetic calibration distribution $P_0$; the deployment
+distribution $P_1$ differs and yields no label, since a non-cooperative
+emitter discloses no position. Anything computable at deployment is
+therefore a function of $X$ and of the model's own output.
+
+\subsection{Data generation and fixed preprocessing}
+\label{sec:gen}
+No public corpus carries raw multi-receiver in-phase/quadrature (IQ)
+recordings with emitter-position
+labels.\footnote{Raw IQ is stored at GB--TB scale, sub-nanosecond
+synchronization is uncommon, and a position label
+presupposes a cooperative transmitter.} We therefore synthesize the
+observation chain physically rather than attaching time differences as
+labels. Four non-cooperative low-probability-of-intercept/-detection
+(LPI/LPD) waveforms are generated at complex
+baseband; TDOAs are imprinted as fractional-sample delays via a
+frequency-domain phase ramp, after which a tapped-delay-line (TDL-D) channel~\cite{tr38901}
+and additive white Gaussian noise (AWGN) are applied (Fig.~\ref{fig:pipe}). Four receivers on an 8\,km-radius
+circle observe an emitter drawn uniformly within it ($f_s=2$\,MHz, carrier
+1.5\,GHz, SNR $\sim U[-10,20]$\,dB). Free-space path loss (ITU-R P.525) is
+recorded as metadata rather than applied.\footnote{The SNR label already
+fixes the noise scale and the CRLB reference; applying both would
+invalidate the reference.} One SNR label is shared by all receivers;
+inter-receiver imbalance is not modelled.
+
+Time-difference information resides in the \emph{relative alignment} of two
+receiver signals, which requires a bilinear comparison across lags. Learned
+GCC variants (NGCC-PHAT~\cite{berg2022}, FS-GCC~\cite{cobos2020,comanducci2020}) keep that
+correlation outside the network for this reason. We keep the whole chain
+fixed, which lets us use the time-delay CRLB~\cite{stein1981} as an
+analytical reference for $\Sigma_a$. The whitening exponent is not assumed: over
+five seeds, full whitening ($\beta=1$) beats $\beta\in\{0,0.5\}$ in
+low-SNR conditional coverage ($\Delta\approx0.07$, $p<0.03$).
+
+\subsection{Evidential head and conformal calibration}
+\label{sec:uq}
+The head belongs to the evidential family~\cite{amini2020}, whose epistemic component
+is known to be ordinal rather than calibrated~\cite{juergens2024}.
+A 128-dimensional trunk feature $\phi$ enters a single linear layer
+emitting a mean $\mu\in\mathbb{R}^2$, the Cholesky factor $L$ of a $2\x2$
+scale matrix, and a degrees-of-freedom parameter
+$\nu = 8+5\tanh(\cdot)\in(3,13)$; the aleatoric and epistemic covariances
+are $\Sigma_a=\nu LL^{\!\top}\!/(\nu-3)$ and
+$\Sigma_e=LL^{\!\top}\!/(\nu-3)$. The Normal--Wishart parameterization for
+regression was derived for general output dimension by
+Malinin~\etal~\cite{malinin2020}, but evaluated only for scalar targets ---
+synthetic 1-D data, UCI regression, per-pixel depth. Our target is a
+two-dimensional position, and the off-diagonal term --- the tilt of the
+error ellipse --- carries the receiver geometry. We tie
+the mean-precision parameter to $\nu$ at unit ratio~\cite{meinert2021}, which
+removes the shape-parameter non-identifiability and lets us train by negative log-likelihood alone,
+without the evidence regularizer~\cite{malinin2020}. Conformal evidential calibration also has scalar
+precedent~\cite{duan2025}; ours
+uses the Mahalanobis score
+\begin{equation}
+M(X,y)=\big((y-\mu)^{\!\top}(\Sigma_a{+}\Sigma_e)^{-1}(y-\mu)\big)^{1/2},
+\label{eq:maha}
+\end{equation}
+a scalar, so split conformal prediction (CP) applies: with $Q$ the empirical quantile
+of the $n$ calibration scores at level
+$\lceil(n{+}1)(1{-}\alpha)\rceil/n$ (NumPy's `higher'
+interpolation), the region is
+\begin{equation}
+C_\alpha(X)=\{\,y : M(X,y)\le Q\,\},
+\label{eq:region}
+\end{equation}
+and it is this constant that Sec.~\ref{sec:guarantee} freezes. A
+group-conditional (Mondrian) variant computes one quantile per SNR bin.
+
+\subsection{Distribution shifts and controls}
+\label{sec:axes}
+Deployment distributions $P_1$ come from the same generator with one factor
+changed at a time in graded levels (600 snapshots each), spanning
+propagation, emitter bandwidth and receiver hardware
+(Fig.~\ref{fig:pipe}). Sampling-clock offset (SCO) up to 100\,ppm is a \emph{negative control}: it
+leaves the median error unchanged ($\x1.01$), so a detector that fires on
+it is an alarm generator. Low SNR is a \emph{positive control}: it degrades
+the estimate through a mechanism the head does represent. Selection and
+confirmation use disjoint levels (Sec.~\ref{sec:detect}).
+
+% =====================================================================
+\section{The Guarantee and Its Precondition}
+\label{sec:guarantee}
+
+The head's raw regions carry no guarantee and are far too large. Split
+conformal calibration supplies one: when calibration and deployment
+data are exchangeable, the region \eqref{eq:region} covers with
+probability at least $1-\alpha$, finite-sample and
+distribution-free. On this head, a single quantile returns coverage to
+nominal and removes $84\%$ of the area (Table~\ref{tab:guarantee}).
+
+Marginal validity, however, is silent about conditions: the elliptical
+region covers only $0.657$ of the lowest-SNR bin. One quantile per SNR bin (Mondrian
+inductive conformal prediction~\cite{vovk2012})
+restores that bin to nominal and makes the typical region smaller at the
+same time, because the group-conditional constant enlarges the low-SNR
+regions and shrinks every other bin (Table~\ref{tab:guarantee}) --- using a
+label the deployment does not provide (Sec.~\ref{sec:detect}). These
+properties survive the generator: coverage stays within $0.894$--$0.909$
+across 13 recalibrated configurations spanning channel family,
+line-of-sight/non-line-of-sight (LOS/NLOS) mixture, delay bias and whitening $\beta$.
+
+All of this assumes the calibration set is drawn from the test
+distribution. It cannot be (Sec.~\ref{sec:problem}). With the constant
+calibrated on $P_0$ and frozen, a channel-family change alone
+takes coverage from $0.90$ to $0.19$ (TDL-A) and $0.20$ (TDL-C; five
+training seeds, spread $0.15$--$0.24$). The guarantee has not failed; its
+precondition has. This paper asks whether the model can tell ---
+and, where it can, what can be done about it.
+
+\begin{table}[t]
+\caption{In-distribution behaviour at nominal 0.90, and the effect of
+freezing the constant. Areas are medians (heavy-tailed); deviation is
+the mean absolute departure from 0.90 over six SNR bins.}
+\label{tab:guarantee}
+\centering
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lcccc}
+\toprule
+ & cov. & area [km$^2$] & low-SNR & cond.\ dev. \\
+\midrule
+head alone, no CP        & 0.9925 & 2.73 & 0.969 & 0.092 \\
+$+$ elliptical CP        & 0.9020 & 0.43 & 0.657 & 0.085 \\
+$+$ group-cond.\ CP      & 0.9085 & \textbf{0.33} & \textbf{0.903} & \textbf{0.011} \\
+\midrule
+frozen $Q$, TDL-A\,/\,-C & \textbf{0.19\,/\,0.20} & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =====================================================================
+\begin{table*}[t]
+\caption{Detection and repair in one view; \textbf{higher detection is
+better}. Detection columns: power at 5\% false abstention, [min--max]
+over five training seeds, bold marking the highest mean power per row ---
+in every repair family also the assigned normalizer; the fourth, the
+head's epistemic score, is the three flags' baseline (conventional
+upper tail; its lower tail fires only on the inversion axes,
+$0.21$--$0.46$ multipath and $0.13$--$0.25$ bandwidth, trailing the
+assigned signal in every cell). Repair columns: the flag used as normalizer
+($\kappa$), coverage at $\alpha=0.10$ before $\to$ after over all snapshots,
+median corrected-region fraction of the 201\,km$^2$ search area; coverage
+is averaged across model--set cells, area is the median of cell medians. Control
+rows: false-abstention rates (matching $\alpha$, not high, is
+correct). Both controls are shifts: the negative must not fire, the
+positive must; the last block has median areas above the gate, its
+normalizers evaluated nonetheless.}
+\label{tab:detect}
+\centering
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{@{}clcccc|lcc@{}}
+\toprule
+ & & \multicolumn{3}{c}{label-free flags} & baseline
+ & \multicolumn{3}{c}{repair @ $\alpha=0.10$} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-6}\cmidrule(lr){7-9}
+ & condition & rule res. & $\phi$-norm & energy & head epi.
+          & flag ($\kappa$) & coverage & \% of search area \\
+\midrule
+{\itshape control} & in-dist.\ (false abst.)       & 0.050 & 0.049 & 0.049 & 0.049 & --- & --- & --- \\
+& SCO 100\,ppm (neg.\ ctrl)     & 0.05--0.06 & 0.06--0.07 & 0.05 & 0.05 & --- & --- & --- \\
+& low-SNR shift (pos.\ ctrl)    & 0.04--0.07 & 0.30--0.48 & \textbf{0.80} & 0.74--0.78 & --- & --- & --- \\
+\midrule
+{\itshape repair} & strong multipath              & \textbf{0.66--0.72} & 0.42--0.57 & 0.64--0.65 & 0.13--0.14 & \textbf{rule res.}\ (0.6) & 0.14 $\to$ \textbf{0.71} & 12\% \\
+& bandwidth loss               & 0.25--0.37 & \textbf{0.21--0.41} & 0.11 & 0.00 & \textbf{$\phi$-norm} (1.5) & 0.49 $\to$ \textbf{0.90} & 2\% \\
+& Rayleigh fading               & 0.43--0.55 & 0.06--0.09 & \textbf{0.58--0.59} & 0.21--0.29 & \textbf{energy} (0.4) & 0.19 $\to$ \textbf{0.62} & 2\% \\
+& channel family (TDL-A/-C)     & 0.38--0.53 & 0.03--0.07 & \textbf{0.73} & 0.31--0.58 & \textbf{energy} (0.4) & 0.19--0.20 $\to$ \textbf{0.74} & 18\% \\
+\midrule
+{\itshape abstain} & carrier offset                & 0.28--0.40 & 0.06--0.16 & \textbf{0.86} & 0.69--0.85 & energy (0.4) & 0.17 $\to$ 0.86 & 235\% \\
+& deep SNR shift                & 0.00 & 0.83--0.99 & \textbf{1.00} & \textbf{1.00} & energy (0.4) & 0.16 $\to$ 1.00 & 469\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Label-Free Failure Diagnosis}
+\label{sec:diag}
+
+Label-free self-diagnosis is itself classical in navigation: receiver
+autonomous integrity monitoring (RAIM) tests satellite measurements for mutual consistency~\cite{brown1992},
+signal-quality monitoring reads distortions of the correlator
+peak~\cite{phelts2001}, and time-difference-of-arrival (TDOA) residual tests flag faulty
+sensors~\cite{giunta2023}. Each diagnoses the measurements under a trusted
+error model. In machine learning the same question is
+drift detection, with labels~\cite{bayram2022} and without~\cite{oikarinen2021}. Here the diagnosed object is the model: whether the head
+still obeys its own input-to-uncertainty rule.
+
+\subsection{Fitting the rule}
+\label{sec:fit}
+On held-out in-distribution data alone --- never used to train the model,
+and disjoint from the conformal calibration split --- we regress the head's
+reported epistemic scale
+$\sigma_{\mathrm{epi}}=(\operatorname{tr}\Sigma_e)^{1/2}$ on three statistics --- the RMS of the windowed
+curve, the peak-to-far-sidelobe ratio, the peak half-width --- all
+functions of $X$ only:
+\begin{align}
+\log\sigma_{\mathrm{epi}} = 23.26 &+ 3.02\log \mathrm{featRMS} \nonumber\\[-3pt]
+ &- 1.89\log \mathrm{(pk/far)} - 0.99\log \mathrm{hw}.
+\label{eq:rule}
+\end{align}
+Two-fold cross-validated $R^2$ is $0.54$--$0.60$ against $0.57$ in-sample,
+with seed-stable coefficients. The fit is an empirical in-distribution summary of the head's behaviour,
+not a competing model. Note the
+sign on half-width. Under $P_0$ a degraded snapshot has a \emph{narrower}
+peak --- bandwidth, not alignment quality, sets the width of a noise
+maximum --- so the head learned that narrow means uncertain. That is a fact
+about $P_0$, not about physics.
+
+\subsection{Transferring the rule}
+\label{sec:transfer}
+We apply the fitted rule unchanged to each shifted condition and compare
+its prediction with what the head reports (Fig.~\ref{fig:transfer}).
+Normalizing so the calibration distribution reads $1.00$: on the negative
+control the head still obeys its rule ($0.96$); at low SNR it over-reports
+relative to the rule ($1.66$), the correct direction. On every other shift
+it under-reports --- TDL-A/-C $0.33/0.28$, fading $0.34$, bandwidth
+reduction $0.71$, strong multipath $0.08$ --- while the median error grows
+by $1.7\x$ to $15\x$.
+
+The violation is computed from $X$ and the head's own output, with no
+labels. It nevertheless ranks the conditions the way the label-dependent
+coverage does: Spearman $0.74$ over eleven conditions, $0.85$ with the
+positive control removed.
+
+The decomposition separates two failures. Under multipath the rule
+sees the degradation and the head ignores it. Under bandwidth reduction the
+head follows the rule but the rule is itself blind, because that
+shift widens the peak in a direction $P_0$ never contained.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.67\columnwidth]{fig2_ruletransfer}
+\vspace{-0.15in}
+\caption{Rule transfer (Sec.~\ref{sec:transfer}), both axes computed without deployment
+labels. Light points are snapshots; large markers are condition medians,
+annotated with reported over rule-implied at those medians, normalized to
+$1.00$ in distribution (benign $=$ clock
+offset, channel $=$ TDL-C, multipath $=$ strongest delay spread). The
+shaded band holds the central 90\% of in-distribution residuals; the flag
+fires below its red lower edge, the one-sided $\alpha=0.05$ threshold, and
+the upper edge is not tested.}
+\label{fig:transfer}
+\end{figure}
+
+\subsection{Where the violation comes from}
+\label{sec:mech}
+The violation is located in the feature space: the final feature is a rectified linear unit (ReLU)
+output, so its entries are non-negative, and its projection onto the ellipse-size
+weights is negative in all five training seeds ($-1.10$ to $-1.15$);
+more activation therefore shrinks the predicted covariance exponentially.
+Multipath and bandwidth reduction raise activation by $1.10\x$ to $1.32\x$
+without improving the signal --- spurious peaks switch on additional
+filters --- and the model becomes more confident. The shifts the head does
+handle run the same path in reverse: fading and a change of channel family
+lower the feature norm ($0.75$--$0.91\x$, five seeds) and the covariance
+grows. The sign of that change separates every inversion from every
+correctly handled channel shift, and is why the norm returns as a flag in
+Sec.~\ref{sec:detect}. (The mechanism is specific to this head; the
+rule-transfer test does not depend on it.)
+
+% =====================================================================
+\section{Results: Detection, Repair, and Abstention}
+\label{sec:detect}
+
+\subsection{The two limits}
+Can the failure be repaired rather than detected? Under deployment
+constraints --- one forward pass, a frozen head, calibration from $P_0$ ---
+the answer is graded by two limits. The first is the calibration
+support: the fraction $\beta^{*}$ of shifted scores beyond the calibration
+maximum. Reweighting a fixed score cannot move a finite quantile past that
+support~\cite{tibshirani2019} --- at the strongest multipath level
+$\beta^{*}$ is $28$--$47\%$ (five seeds) against
+$\alpha=0.10$, versus at most $5\%$ on the shifts recalibration does
+reach. The same group-conditional machinery that lifts an SNR shift from
+$0.157$ to $0.661$ lifts this one only from $0.142$ to $0.199$: the limit
+is specific, not generic. We therefore evaluate family-wise normalization and the size of the
+corrected region under a gate of one fifth of the search area.
+% ---- Fig.3 (triage dumbbell): +0.107쪽 필요 — 상쇄 절감 확보 시 활성화 ----
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=\columnwidth]{fig3_repair}
+% \caption{The triage at a glance: coverage at $\alpha=0.10$ with the frozen
+% constant and after the assigned normalizer, per failure family
+% (Table~\ref{tab:detect}); annotations give the median corrected region as
+% a fraction of the search disc. For the two bottom families any repair
+% inflates the region past the disc, and the runtime rule abstains.}
+% \label{fig:triage}
+% \end{figure}
+
+\subsection{Label-free detection}
+We turn the violation into an abstention rule. The score
+$s=\beta^{\!\top}x-\log\sigma_{\mathrm{epi}}$, the signed violation of
+\eqref{eq:rule}, is large when the head claims more certainty than its own
+rule allows. Held-out in-distribution data are
+split in three --- rule fit, conformal calibration of a
+$p$-value~\cite{kaur2022} for $s$, false-abstention measurement --- and we
+abstain when $p\le\alpha$; at $\alpha=0.05$ the measured rate is $0.050$
+and the negative control fires at the nominal rate
+(Table~\ref{tab:detect}).
+
+The rule residual detects the genuinely silent failures and is strongest
+on multipath, where it beats the head's epistemic score in every cell, in
+either tail (Table~\ref{tab:detect}). Carrier offset turns out not to be silent: the
+epistemic itself fires there, an energy shift the head represents. The
+residual is deliberately quiet at low SNR, where the energy flag and the
+epistemic both fire.
+
+Selection and confirmation are separated on three axes (training,
+generation, and shift-level); all six pre-registered predictions hold,
+five in 20 of 20 cells.
+
+A second and cheaper flag targets the inversion itself.
+Sec.~\ref{sec:mech} locates the failure in the feature norm, and the norm
+is read through the same conformal $p$-value machinery as the residual,
+now in the upper tail of $\log\|\phi\|$: it exceeds its calibration level
+exactly where the reported uncertainty falls (multipath, bandwidth
+reduction) and stays at the nominal rate where the head still responds
+correctly to a channel change (fading, the TDL families;
+Table~\ref{tab:detect}). It costs one norm of a vector the model already
+computes.
+
+A third, the energy flag, covers the energy-loss family the first two
+miss. It is an error regression: the same three curve statistics as in
+\eqref{eq:rule}, refit to predict the log error instead of the reported
+uncertainty; at inference its score reads the curve alone. It leads on both 3GPP NLOS
+families while staying quiet on bandwidth loss, which the second flag
+owns (Table~\ref{tab:detect}). All three are confirmed on generation
+seeds never used to build them.
+
+\subsection{Repair within the region gate, abstention beyond it}
+The three flags are also the
+three correctors, used as
+normalizers~\cite{papadopoulos2002,papadopoulos2008} of the score
+\eqref{eq:maha},
+\begin{equation}
+M_\kappa = M/\exp(\kappa z),
+\label{eq:norm}
+\end{equation}
+with $z$ the assigned signal standardized on one half of the calibration
+split (negative $z$ set to zero except for the energy flag) and the
+quantile taken on the other, leaving the in-distribution
+guarantee untouched (coverage $0.892$--$0.918$, every arm); $\kappa$ is a
+design-time constant like $\alpha$, frozen per signal and confirmed on new
+shift sets. The corrected region is
+$\{\,y : M(X,y)\le Q_\kappa\,e^{\kappa z(X)}\}$, where $Q_\kappa$ is the
+calibration quantile of $M_\kappa$; its area is evaluated against the gate
+without deployment labels.
+
+Repair follows detection in three senses. A signal repairs only where it
+fires: six silent signal-family pairs move coverage by at most $0.09$,
+regions unchanged. Firing alone is not sufficient: three pairs fire at
+$0.86$--$1.00$ yet their median corrected regions exceed the gate.
+Across conditions satisfying the median-area gate, coverage gain tracks
+detection power (Spearman $0.80$--$0.98$ per signal, negative control
+excluded).
+
+Table~\ref{tab:detect} gives the confirmed assignment; the outcome per family tracks the two limits:
+bandwidth loss ($\beta^{*}=0.02$) returns to nominal at $2\%$ of the
+search area; peak mis-selection ($\beta^{*}=0.38$) reaches $0.71$ at its assigned
+$\kappa$; none of the tested settings attains nominal coverage under the
+median-area gate. The energy family --- fading, moderate carrier
+offset, channel family --- is served by the energy flag, which holds
+every energy axis inside the region gate at a single $\kappa$ and doubles
+as the in-distribution corrector without SNR labels: it lifts the
+lowest-SNR bin from $0.67$ to $0.91$ with the median region at $0.1\%$ of
+the search area, a conditional deviation nearly matching the label-using
+Mondrian ($0.013$--$0.024$ vs.\
+$0.018$--$0.029$ per model, held-out sets). Deep
+SNR shift starts with regions already at $16\%$ of the search area, and both
+tested nonzero energy settings exceed the median-area gate; abstention
+remains --- the axis the head's epistemic detects reliably.
+
+The map from family to normalizer is fixed at design time; given it,
+correcting a snapshot and measuring its region need no labels, and we
+abstain when that region exceeds the gate. Median regions are $\le\!19\%$ of
+the search area where we repair against $\ge\!235\%$ where we abstain, so any
+gate between them classifies the nine conditions the same way. The energy flag serves as both detector and corrector; retaining signed
+$z$ lets its normalization factor fall below or rise above one.
+
+Under the same gate and frozen $\kappa$, classical integrity checks
+provide an external control: a lag-domain parity residual (RAIM-style), a
+peak-sharpness ratio, and correlation-shape tests (SQM-style),
+preregistered on held-out shift sets. The parity residual is the strongest detector on the energy
+family ($0.80$--$0.92$) --- the shifts the head itself represents. On
+strong multipath, the head's largest inversion, no classical check
+exceeds $0.52$ (parity and shape flat across severity) and none repairs
+past $0.62$ against $0.71$: the
+failure classical monitoring sees worst is the one best detected by the
+head-aware diagnostic among the methods tested.
+
+At that gate, accepted coverage is $0.53$--$0.58$ on multipath,
+fading and TDL-A/C; carrier offset passes $21\%$ of snapshots at coverage
+$0.44$, and no deep-SNR snapshot passes. Choosing the normalizer without
+the family label is not evaluated, and both abstention and repair select
+subsets of the stream, so selective calibration is left to future work.
+
+% =====================================================================
+\section{Conclusion}
+\label{sec:concl}
+
+We studied uncertainty failures in non-cooperative emitter geolocation
+under distribution shift with frozen conformal calibration. Departures from
+an in-distribution rule linking curve statistics to reported uncertainty
+make these failures measurable without labels. Three signals built from
+them detect the failing families and improve coverage, though not always to
+nominal; the corrected region's size supports abstention without
+certifying coverage or establishing an end-to-end deployment policy.
+Evidence is synthetic; selective calibration and field data remain
+open.
+
+% =====================================================================
+\vfill\pagebreak
+% ICASSP/SPS 정책: 전 논문 required (승인 불요 연구 포함). 문구는 정책 제공 표준문.
+\section*{Compliance with Ethical Standards}
+This is a numerical simulation study for which no ethical approval was
+required.
+
+\bibliographystyle{IEEEbib}
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\bibitem{npj2026} N. Hendy, B. Manzoor, F.~G. Kurnia, F. Moya Caceres,
+and A. Al-Hourani, ``Beyond GNSS: a survey and tutorial on satellite-based
+radio frequency (RF) geolocation and emitter fingerprinting,'' \emph{npj
+Wireless Technol.}, vol.~2, art.~no.~37, 2026.
+\bibitem{gattis2026} B. Gattis, J. Cydejko, and D. Akos, ``Baltic Sea
+GNSS jamming and spoofing emitter detection and localization in real-time
+using a time difference of arrival (TDOA) system,'' \emph{GPS Solutions},
+vol.~30, art.~no.~96, 2026.
+\bibitem{clements2023} Z.~L. Clements, T.~E. Humphreys, and P. Ellis,
+``Dual-satellite geolocation of terrestrial GNSS jammers from low Earth
+orbit,'' in \emph{Proc. IEEE/ION PLANS}, 2023, pp.~458--469.
+\bibitem{grumiaux2022} P.-A. Grumiaux, S. Kiti\'{c}, L. Girin, and
+A. Gu\'{e}rin, ``A survey of sound source localization with deep learning
+methods,'' \emph{J. Acoust. Soc. Am.}, vol.~152, no.~1, pp.~107--151, 2022.
+\bibitem{pan2026} G. Pan \etal, ``AI-driven wireless positioning:
+fundamentals, standards, state-of-the-art, and challenges,'' \emph{IEEE
+Commun. Surveys Tuts.}, vol.~28, no.~4, pp.~4394--4428, 2026.
+\bibitem{piyu2025} R. Pi and X. Yu, ``Uncertainty estimation for sound
+source localization with deep learning,'' \emph{IEEE Trans. Instrum.
+Meas.}, vol.~74, art.~no.~2502512, 2025.
+\bibitem{schymura2021} C. Schymura \etal, ``PILOT: introducing
+transformers for probabilistic sound event localization,'' in
+\emph{Proc. Interspeech}, 2021, pp.~2117--2121.
+\bibitem{rozenfeld2025} V. Rozenfeld and B. Laufer-Goldshtein, ``Conformal
+prediction for manifold-based source localization with Gaussian
+processes,'' in \emph{Proc. IEEE ICASSP}, 2025.
+\bibitem{michael2026} O. Michael and B. Laufer-Goldshtein,
+``Semi-supervised GNN for sound source localization with prediction
+intervals,'' in \emph{Proc. IEEE ICASSP}, 2026, pp.~20881--20885.
+\bibitem{kampe2026} J.~N. Kampe \etal, ``Physics-informed learning for
+robust acoustic localization with calibrated uncertainty,''
+arXiv:2608.08911, 2026.
+\bibitem{chan1994} Y.~T. Chan and K.~C. Ho, ``A simple and efficient
+estimator for hyperbolic location,'' \emph{IEEE Trans. Signal Process.},
+vol.~42, no.~8, pp.~1905--1915, 1994.
+\bibitem{dibiase2001} J.~H. DiBiase, H.~F. Silverman, and
+M.~S. Brandstein, ``Robust localization in reverberant rooms,'' in
+\emph{Microphone Arrays: Signal Processing Techniques and Applications},
+M.~S. Brandstein and D. Ward, Eds. Berlin, Germany: Springer, 2001,
+pp.~157--180.
+\bibitem{knapp1976} C.~H. Knapp and G.~C. Carter, ``The generalized
+correlation method for estimation of time delay,'' \emph{IEEE Trans.
+Acoust., Speech, Signal Process.}, vol.~24, no.~4, pp.~320--327, 1976.
+\bibitem{angelopoulos2021} A.~N. Angelopoulos and S. Bates, ``A gentle
+introduction to conformal prediction and distribution-free uncertainty
+quantification,'' arXiv:2107.07511, 2021.
+\bibitem{tr38901} 3GPP, ``Study on channel model for frequencies from 0.5
+to 100 GHz,'' 3GPP TR 38.901, V18.0.0, 2024.
+\bibitem{berg2022} A. Berg, M. O'Connor, K. \AA{}str\"{o}m, and
+M. Oskarsson, ``Extending GCC-PHAT using shift equivariant neural
+networks,'' in \emph{Proc. Interspeech}, 2022, pp.~1791--1795.
+\bibitem{cobos2020} M. Cobos, F. Antonacci, L. Comanducci, and A. Sarti,
+``Frequency-sliding generalized cross-correlation: a sub-band time delay
+estimation approach,'' \emph{IEEE/ACM Trans. Audio, Speech, Lang.
+Process.}, vol.~28, pp.~1270--1281, 2020.
+\bibitem{comanducci2020} L. Comanducci, M. Cobos, F. Antonacci, and
+A. Sarti, ``Time difference of arrival estimation from frequency-sliding
+generalized cross-correlations using convolutional neural networks,'' in
+\emph{Proc. IEEE ICASSP}, 2020, pp.~4945--4949.
+\bibitem{stein1981} S. Stein, ``Algorithms for ambiguity function
+processing,'' \emph{IEEE Trans. Acoust., Speech, Signal Process.},
+vol.~29, no.~3, pp.~588--599, 1981.
+\bibitem{amini2020} A. Amini, W. Schwarting, A. Soleimany, and D. Rus,
+``Deep evidential regression,'' in \emph{Proc. NeurIPS}, 2020.
+\bibitem{juergens2024} M. J\"{u}rgens, N. Meinert, V. Bengs,
+E. H\"{u}llermeier, and W. Waegeman, ``Is epistemic uncertainty faithfully
+represented by evidential deep learning methods?,'' in \emph{Proc. ICML}, PMLR vol.~235, 2024,
+pp.~22624--22642.
+\bibitem{malinin2020} A. Malinin, S. Chervontsev, I. Provilkov, and
+M. Gales, ``Regression prior networks,'' arXiv:2006.11590, 2020.
+\bibitem{meinert2021} N. Meinert and A. Lavin, ``Multivariate deep
+evidential regression,'' arXiv:2104.06135, 2021.
+\bibitem{duan2025} Y. Duan, X. Zhao, N. Shi, and H.-W. Shen,
+``ConfEviSurrogate: a conformalized evidential surrogate model for
+uncertainty quantification,'' arXiv:2504.02919, 2025.
+\bibitem{vovk2012} V. Vovk, ``Conditional validity of inductive conformal
+predictors,'' in \emph{Proc. ACML}, PMLR vol.~25, 2012,
+pp.~475--490.
+\bibitem{brown1992} R.~G. Brown, ``A baseline GPS RAIM scheme and a note
+on the equivalence of three RAIM methods,'' \emph{NAVIGATION}, vol.~39,
+no.~3, pp.~301--316, 1992.
+\bibitem{phelts2001} R.~E. Phelts, ``Multicorrelator techniques for
+robust mitigation of threats to GPS signal quality,'' Ph.D. dissertation,
+Dept. Mech. Eng., Stanford Univ., Stanford, CA, USA, 2001.
+\bibitem{giunta2023} G. Giunta, L. Pallotta, and D. Orlando, ``Detecting
+sensor failures in TDOA-based passive radars: a statistical approach
+based on outlier distribution,'' \emph{IEEE Trans. Aerosp. Electron.
+Syst.}, vol.~59, no.~3, pp.~2176--2187, 2023.
+\bibitem{bayram2022} F. Bayram, B.~S. Ahmed, and A. Kassler, ``From
+concept drift to model degradation: an overview on performance-aware
+drift detectors,'' \emph{Knowl.-Based Syst.}, vol.~245, art.~no.~108632,
+2022.
+\bibitem{oikarinen2021} E. Oikarinen, H. Tiittanen, A. Henelius, and
+K. Puolam\"{a}ki, ``Detecting virtual concept drift of regressors without
+ground truth values,'' \emph{Data Min. Knowl. Discov.}, vol.~35, no.~3,
+pp.~726--747, 2021.
+\bibitem{tibshirani2019} R.~J. Tibshirani, R.~F. Barber, E.~J. Cand\`{e}s,
+and A. Ramdas, ``Conformal prediction under covariate shift,'' in
+\emph{Proc. NeurIPS}, 2019, pp.~2526--2536.
+\bibitem{kaur2022} R. Kaur \etal, ``iDECODe: in-distribution
+equivariance for conformal out-of-distribution detection,'' in
+\emph{Proc. AAAI}, 2022, pp.~7104--7114.
+\bibitem{papadopoulos2002} H. Papadopoulos, K. Proedrou, V. Vovk, and
+A. Gammerman, ``Inductive confidence machines for regression,'' in
+\emph{Proc. ECML}, LNCS vol.~2430, 2002,
+pp.~345--356.
+\bibitem{papadopoulos2008} H. Papadopoulos, V. Vovk, and A. Gammerman,
+``Normalized nonconformity measures for regression conformal
+prediction,'' in \emph{Proc. IASTED AIA}, 2008, pp.~64--69.
+\end{thebibliography}
+
+\end{document}

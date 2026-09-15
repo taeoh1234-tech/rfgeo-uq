@@ -1,0 +1,2055 @@
+{
+ "_spec": "MD 파일/SNAPSHOT_GATE_SPEC_2026-09-14.md",
+ "_scope": "family-wise gate 평가: 사전 배정 arm + 동결 kappa + tau=0.20. 런타임 selector 검증이 아니며 사전등록 확증도 아니다. accepted 커버리지에는 유한표본 보장이 없다 (데이터 의존 선택).",
+ "tau": 0.2,
+ "alpha": 0.1,
+ "disc_km2": 201.06192982974676,
+ "quantile_convention": "fsq: ceil((n+1)(1-alpha))-th order statistic (확증 계열)",
+ "gate_R": {
+  "n_cells": 105,
+  "max_rel_err": 1.5839673916172218e-16,
+  "pass": true
+ },
+ "Q": {
+  "m0": {
+   "LS@0.40": 0.756887,
+   "RULE@0.6": 0.752096,
+   "PHI@1.5": 0.675998
+  },
+  "m1": {
+   "LS@0.40": 0.923026,
+   "RULE@0.6": 0.880533,
+   "PHI@1.5": 0.808062
+  },
+  "m2": {
+   "LS@0.40": 0.800245,
+   "RULE@0.6": 0.781275,
+   "PHI@1.5": 0.68599
+  },
+  "m3": {
+   "LS@0.40": 0.772664,
+   "RULE@0.6": 0.764001,
+   "PHI@1.5": 0.67491
+  },
+  "seed0": {
+   "LS@0.40": 0.761611,
+   "RULE@0.6": 0.721217,
+   "PHI@1.5": 0.681231
+  }
+ },
+ "rows": {
+  "in-dist low-SNR bin": {
+   "arm": "LS@0.40",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 293,
+     "n_accept": 228,
+     "acc_rate": 0.7782,
+     "cov_all": 0.9044,
+     "cov_accept": 0.8772,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00208,
+     "p90_frac_accept": 0.0086,
+     "med_area_km2_accept": 0.419
+    },
+    "m1": {
+     "n": 293,
+     "n_accept": 221,
+     "acc_rate": 0.7543,
+     "cov_all": 0.9147,
+     "cov_accept": 0.8959,
+     "cov_reject": 0.9722,
+     "med_frac_accept": 0.00293,
+     "p90_frac_accept": 0.01304,
+     "med_area_km2_accept": 0.589
+    },
+    "m2": {
+     "n": 293,
+     "n_accept": 227,
+     "acc_rate": 0.7747,
+     "cov_all": 0.9181,
+     "cov_accept": 0.8943,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00245,
+     "p90_frac_accept": 0.01,
+     "med_area_km2_accept": 0.493
+    },
+    "m3": {
+     "n": 293,
+     "n_accept": 226,
+     "acc_rate": 0.7713,
+     "cov_all": 0.901,
+     "cov_accept": 0.8805,
+     "cov_reject": 0.9701,
+     "med_frac_accept": 0.00225,
+     "p90_frac_accept": 0.0096,
+     "med_area_km2_accept": 0.452
+    },
+    "seed0": {
+     "n": 293,
+     "n_accept": 226,
+     "acc_rate": 0.7713,
+     "cov_all": 0.9078,
+     "cov_accept": 0.885,
+     "cov_reject": 0.9851,
+     "med_frac_accept": 0.00223,
+     "p90_frac_accept": 0.00911,
+     "med_area_km2_accept": 0.448
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.77,
+     "min": 0.7543,
+     "max": 0.7782,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.9092,
+     "min": 0.901,
+     "max": 0.9181,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.8866,
+     "min": 0.8772,
+     "max": 0.8959,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9855,
+     "min": 0.9701,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0024,
+     "min": 0.0021,
+     "max": 0.0029,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.0101,
+     "min": 0.0086,
+     "max": 0.013,
+     "n_models": 5
+    }
+   }
+  },
+  "delay_3": {
+   "arm": "RULE@0.6",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 1200,
+     "n_accept": 701,
+     "acc_rate": 0.5842,
+     "cov_all": 0.645,
+     "cov_accept": 0.5264,
+     "cov_reject": 0.8116,
+     "med_frac_accept": 0.02275,
+     "p90_frac_accept": 0.13512,
+     "med_area_km2_accept": 4.575
+    },
+    "m1": {
+     "n": 1200,
+     "n_accept": 568,
+     "acc_rate": 0.4733,
+     "cov_all": 0.8142,
+     "cov_accept": 0.6954,
+     "cov_reject": 0.9209,
+     "med_frac_accept": 0.02362,
+     "p90_frac_accept": 0.15455,
+     "med_area_km2_accept": 4.749
+    },
+    "m2": {
+     "n": 1200,
+     "n_accept": 788,
+     "acc_rate": 0.6567,
+     "cov_all": 0.6825,
+     "cov_accept": 0.5533,
+     "cov_reject": 0.9296,
+     "med_frac_accept": 0.02071,
+     "p90_frac_accept": 0.14643,
+     "med_area_km2_accept": 4.165
+    },
+    "m3": {
+     "n": 1200,
+     "n_accept": 725,
+     "acc_rate": 0.6042,
+     "cov_all": 0.685,
+     "cov_accept": 0.5434,
+     "cov_reject": 0.9011,
+     "med_frac_accept": 0.0193,
+     "p90_frac_accept": 0.14024,
+     "med_area_km2_accept": 3.881
+    },
+    "seed0": {
+     "n": 1200,
+     "n_accept": 633,
+     "acc_rate": 0.5275,
+     "cov_all": 0.7275,
+     "cov_accept": 0.5577,
+     "cov_reject": 0.9171,
+     "med_frac_accept": 0.02053,
+     "p90_frac_accept": 0.13514,
+     "med_area_km2_accept": 4.128
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.5692,
+     "min": 0.4733,
+     "max": 0.6567,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.7108,
+     "min": 0.645,
+     "max": 0.8142,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.5752,
+     "min": 0.5264,
+     "max": 0.6954,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.8961,
+     "min": 0.8116,
+     "max": 0.9296,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0214,
+     "min": 0.0193,
+     "max": 0.0236,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.1423,
+     "min": 0.1351,
+     "max": 0.1545,
+     "n_models": 5
+    }
+   }
+  },
+  "occ 0.05": {
+   "arm": "PHI@1.5",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 1800,
+     "n_accept": 1413,
+     "acc_rate": 0.785,
+     "cov_all": 0.8744,
+     "cov_accept": 0.8401,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00699,
+     "p90_frac_accept": 0.10379,
+     "med_area_km2_accept": 1.405
+    },
+    "m1": {
+     "n": 1800,
+     "n_accept": 1517,
+     "acc_rate": 0.8428,
+     "cov_all": 0.8972,
+     "cov_accept": 0.878,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00962,
+     "p90_frac_accept": 0.10254,
+     "med_area_km2_accept": 1.934
+    },
+    "m2": {
+     "n": 1800,
+     "n_accept": 1609,
+     "acc_rate": 0.8939,
+     "cov_all": 0.8822,
+     "cov_accept": 0.8682,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00744,
+     "p90_frac_accept": 0.07224,
+     "med_area_km2_accept": 1.496
+    },
+    "m3": {
+     "n": 1800,
+     "n_accept": 1411,
+     "acc_rate": 0.7839,
+     "cov_all": 0.9194,
+     "cov_accept": 0.8972,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00865,
+     "p90_frac_accept": 0.0985,
+     "med_area_km2_accept": 1.739
+    },
+    "seed0": {
+     "n": 1800,
+     "n_accept": 1367,
+     "acc_rate": 0.7594,
+     "cov_all": 0.945,
+     "cov_accept": 0.9276,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.01352,
+     "p90_frac_accept": 0.11027,
+     "med_area_km2_accept": 2.718
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.813,
+     "min": 0.7594,
+     "max": 0.8939,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.9036,
+     "min": 0.8744,
+     "max": 0.945,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.8822,
+     "min": 0.8401,
+     "max": 0.9276,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0092,
+     "min": 0.007,
+     "max": 0.0135,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.0975,
+     "min": 0.0722,
+     "max": 0.1103,
+     "n_models": 5
+    }
+   }
+  },
+  "kf_3": {
+   "arm": "LS@0.40",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 1200,
+     "n_accept": 919,
+     "acc_rate": 0.7658,
+     "cov_all": 0.5867,
+     "cov_accept": 0.4733,
+     "cov_reject": 0.9573,
+     "med_frac_accept": 0.01098,
+     "p90_frac_accept": 0.06922,
+     "med_area_km2_accept": 2.208
+    },
+    "m1": {
+     "n": 1200,
+     "n_accept": 896,
+     "acc_rate": 0.7467,
+     "cov_all": 0.69,
+     "cov_accept": 0.6004,
+     "cov_reject": 0.9539,
+     "med_frac_accept": 0.01543,
+     "p90_frac_accept": 0.08159,
+     "med_area_km2_accept": 3.102
+    },
+    "m2": {
+     "n": 1200,
+     "n_accept": 950,
+     "acc_rate": 0.7917,
+     "cov_all": 0.6317,
+     "cov_accept": 0.5537,
+     "cov_reject": 0.928,
+     "med_frac_accept": 0.01098,
+     "p90_frac_accept": 0.05896,
+     "med_area_km2_accept": 2.207
+    },
+    "m3": {
+     "n": 1200,
+     "n_accept": 937,
+     "acc_rate": 0.7808,
+     "cov_all": 0.5983,
+     "cov_accept": 0.5037,
+     "cov_reject": 0.9354,
+     "med_frac_accept": 0.01128,
+     "p90_frac_accept": 0.06701,
+     "med_area_km2_accept": 2.269
+    },
+    "seed0": {
+     "n": 1200,
+     "n_accept": 937,
+     "acc_rate": 0.7808,
+     "cov_all": 0.5967,
+     "cov_accept": 0.4963,
+     "cov_reject": 0.9544,
+     "med_frac_accept": 0.01068,
+     "p90_frac_accept": 0.06218,
+     "med_area_km2_accept": 2.148
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.7732,
+     "min": 0.7467,
+     "max": 0.7917,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.6207,
+     "min": 0.5867,
+     "max": 0.69,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.5255,
+     "min": 0.4733,
+     "max": 0.6004,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9458,
+     "min": 0.928,
+     "max": 0.9573,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0119,
+     "min": 0.0107,
+     "max": 0.0154,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.0678,
+     "min": 0.059,
+     "max": 0.0816,
+     "n_models": 5
+    }
+   }
+  },
+  "TDL-A": {
+   "arm": "LS@0.40",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 1800,
+     "n_accept": 844,
+     "acc_rate": 0.4689,
+     "cov_all": 0.7544,
+     "cov_accept": 0.5296,
+     "cov_reject": 0.9529,
+     "med_frac_accept": 0.0308,
+     "p90_frac_accept": 0.14139,
+     "med_area_km2_accept": 6.192
+    },
+    "m1": {
+     "n": 1800,
+     "n_accept": 840,
+     "acc_rate": 0.4667,
+     "cov_all": 0.7872,
+     "cov_accept": 0.5702,
+     "cov_reject": 0.9771,
+     "med_frac_accept": 0.03408,
+     "p90_frac_accept": 0.13431,
+     "med_area_km2_accept": 6.853
+    },
+    "m2": {
+     "n": 1800,
+     "n_accept": 1050,
+     "acc_rate": 0.5833,
+     "cov_all": 0.71,
+     "cov_accept": 0.541,
+     "cov_reject": 0.9467,
+     "med_frac_accept": 0.02687,
+     "p90_frac_accept": 0.12933,
+     "med_area_km2_accept": 5.403
+    },
+    "m3": {
+     "n": 1800,
+     "n_accept": 938,
+     "acc_rate": 0.5211,
+     "cov_all": 0.7133,
+     "cov_accept": 0.4936,
+     "cov_reject": 0.9524,
+     "med_frac_accept": 0.026,
+     "p90_frac_accept": 0.1466,
+     "med_area_km2_accept": 5.228
+    },
+    "seed0": {
+     "n": 1800,
+     "n_accept": 953,
+     "acc_rate": 0.5294,
+     "cov_all": 0.7417,
+     "cov_accept": 0.5488,
+     "cov_reject": 0.9587,
+     "med_frac_accept": 0.02894,
+     "p90_frac_accept": 0.13704,
+     "med_area_km2_accept": 5.819
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.5139,
+     "min": 0.4667,
+     "max": 0.5833,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.7413,
+     "min": 0.71,
+     "max": 0.7872,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.5366,
+     "min": 0.4936,
+     "max": 0.5702,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9576,
+     "min": 0.9467,
+     "max": 0.9771,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0293,
+     "min": 0.026,
+     "max": 0.0341,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.1377,
+     "min": 0.1293,
+     "max": 0.1466,
+     "n_models": 5
+    }
+   }
+  },
+  "TDL-C": {
+   "arm": "LS@0.40",
+   "paper_action": "repair",
+   "per_model": {
+    "m0": {
+     "n": 1800,
+     "n_accept": 860,
+     "acc_rate": 0.4778,
+     "cov_all": 0.7589,
+     "cov_accept": 0.5337,
+     "cov_reject": 0.9649,
+     "med_frac_accept": 0.02893,
+     "p90_frac_accept": 0.13687,
+     "med_area_km2_accept": 5.816
+    },
+    "m1": {
+     "n": 1800,
+     "n_accept": 845,
+     "acc_rate": 0.4694,
+     "cov_all": 0.8044,
+     "cov_accept": 0.6047,
+     "cov_reject": 0.9812,
+     "med_frac_accept": 0.03195,
+     "p90_frac_accept": 0.13525,
+     "med_area_km2_accept": 6.424
+    },
+    "m2": {
+     "n": 1800,
+     "n_accept": 1050,
+     "acc_rate": 0.5833,
+     "cov_all": 0.7283,
+     "cov_accept": 0.5648,
+     "cov_reject": 0.9573,
+     "med_frac_accept": 0.026,
+     "p90_frac_accept": 0.12838,
+     "med_area_km2_accept": 5.227
+    },
+    "m3": {
+     "n": 1800,
+     "n_accept": 949,
+     "acc_rate": 0.5272,
+     "cov_all": 0.7139,
+     "cov_accept": 0.5026,
+     "cov_reject": 0.9495,
+     "med_frac_accept": 0.02571,
+     "p90_frac_accept": 0.13801,
+     "med_area_km2_accept": 5.17
+    },
+    "seed0": {
+     "n": 1800,
+     "n_accept": 979,
+     "acc_rate": 0.5439,
+     "cov_all": 0.7328,
+     "cov_accept": 0.5414,
+     "cov_reject": 0.961,
+     "med_frac_accept": 0.02884,
+     "p90_frac_accept": 0.13809,
+     "med_area_km2_accept": 5.799
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.5203,
+     "min": 0.4694,
+     "max": 0.5833,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.7477,
+     "min": 0.7139,
+     "max": 0.8044,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.5494,
+     "min": 0.5026,
+     "max": 0.6047,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9628,
+     "min": 0.9495,
+     "max": 0.9812,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0283,
+     "min": 0.0257,
+     "max": 0.0319,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.1353,
+     "min": 0.1284,
+     "max": 0.1381,
+     "n_models": 5
+    }
+   }
+  },
+  "sco_4": {
+   "arm": "LS@0.40",
+   "paper_action": "repair (benign control)",
+   "per_model": {
+    "m0": {
+     "n": 1200,
+     "n_accept": 1150,
+     "acc_rate": 0.9583,
+     "cov_all": 0.8858,
+     "cov_accept": 0.8809,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00121,
+     "p90_frac_accept": 0.00316,
+     "med_area_km2_accept": 0.243
+    },
+    "m1": {
+     "n": 1200,
+     "n_accept": 1144,
+     "acc_rate": 0.9533,
+     "cov_all": 0.8975,
+     "cov_accept": 0.8942,
+     "cov_reject": 0.9643,
+     "med_frac_accept": 0.00169,
+     "p90_frac_accept": 0.00446,
+     "med_area_km2_accept": 0.34
+    },
+    "m2": {
+     "n": 1200,
+     "n_accept": 1152,
+     "acc_rate": 0.96,
+     "cov_all": 0.9017,
+     "cov_accept": 0.8976,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00133,
+     "p90_frac_accept": 0.00369,
+     "med_area_km2_accept": 0.267
+    },
+    "m3": {
+     "n": 1200,
+     "n_accept": 1152,
+     "acc_rate": 0.96,
+     "cov_all": 0.8933,
+     "cov_accept": 0.8889,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00124,
+     "p90_frac_accept": 0.00318,
+     "med_area_km2_accept": 0.249
+    },
+    "seed0": {
+     "n": 1200,
+     "n_accept": 1152,
+     "acc_rate": 0.96,
+     "cov_all": 0.8825,
+     "cov_accept": 0.8776,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00121,
+     "p90_frac_accept": 0.00323,
+     "med_area_km2_accept": 0.243
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.9583,
+     "min": 0.9533,
+     "max": 0.96,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.8922,
+     "min": 0.8825,
+     "max": 0.9017,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.8878,
+     "min": 0.8776,
+     "max": 0.8976,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9929,
+     "min": 0.9643,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0013,
+     "min": 0.0012,
+     "max": 0.0017,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.0035,
+     "min": 0.0032,
+     "max": 0.0045,
+     "n_models": 5
+    }
+   }
+  },
+  "cfo_4": {
+   "arm": "LS@0.40",
+   "paper_action": "abstain",
+   "per_model": {
+    "m0": {
+     "n": 1200,
+     "n_accept": 222,
+     "acc_rate": 0.185,
+     "cov_all": 0.8767,
+     "cov_accept": 0.4775,
+     "cov_reject": 0.9673,
+     "med_frac_accept": 0.04231,
+     "p90_frac_accept": 0.14868,
+     "med_area_km2_accept": 8.506
+    },
+    "m1": {
+     "n": 1200,
+     "n_accept": 215,
+     "acc_rate": 0.1792,
+     "cov_all": 0.8875,
+     "cov_accept": 0.4791,
+     "cov_reject": 0.9766,
+     "med_frac_accept": 0.04569,
+     "p90_frac_accept": 0.15099,
+     "med_area_km2_accept": 9.186
+    },
+    "m2": {
+     "n": 1200,
+     "n_accept": 307,
+     "acc_rate": 0.2558,
+     "cov_all": 0.8325,
+     "cov_accept": 0.4137,
+     "cov_reject": 0.9765,
+     "med_frac_accept": 0.03469,
+     "p90_frac_accept": 0.16185,
+     "med_area_km2_accept": 6.976
+    },
+    "m3": {
+     "n": 1200,
+     "n_accept": 273,
+     "acc_rate": 0.2275,
+     "cov_all": 0.845,
+     "cov_accept": 0.4066,
+     "cov_reject": 0.9741,
+     "med_frac_accept": 0.03072,
+     "p90_frac_accept": 0.1432,
+     "med_area_km2_accept": 6.177
+    },
+    "seed0": {
+     "n": 1200,
+     "n_accept": 262,
+     "acc_rate": 0.2183,
+     "cov_all": 0.8583,
+     "cov_accept": 0.4389,
+     "cov_reject": 0.9755,
+     "med_frac_accept": 0.03566,
+     "p90_frac_accept": 0.16621,
+     "med_area_km2_accept": 7.169
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.2132,
+     "min": 0.1792,
+     "max": 0.2558,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.86,
+     "min": 0.8325,
+     "max": 0.8875,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.4432,
+     "min": 0.4066,
+     "max": 0.4791,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.974,
+     "min": 0.9673,
+     "max": 0.9766,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0378,
+     "min": 0.0307,
+     "max": 0.0457,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.1542,
+     "min": 0.1432,
+     "max": 0.1662,
+     "n_models": 5
+    }
+   }
+  },
+  "snr_2": {
+   "arm": "LS@0.40",
+   "paper_action": "abstain",
+   "per_model": {
+    "m0": {
+     "n": 1200,
+     "n_accept": 0,
+     "acc_rate": 0.0,
+     "cov_all": 1.0,
+     "cov_accept": null,
+     "cov_reject": 1.0,
+     "med_frac_accept": null,
+     "p90_frac_accept": null,
+     "med_area_km2_accept": null
+    },
+    "m1": {
+     "n": 1200,
+     "n_accept": 0,
+     "acc_rate": 0.0,
+     "cov_all": 1.0,
+     "cov_accept": null,
+     "cov_reject": 1.0,
+     "med_frac_accept": null,
+     "p90_frac_accept": null,
+     "med_area_km2_accept": null
+    },
+    "m2": {
+     "n": 1200,
+     "n_accept": 0,
+     "acc_rate": 0.0,
+     "cov_all": 1.0,
+     "cov_accept": null,
+     "cov_reject": 1.0,
+     "med_frac_accept": null,
+     "p90_frac_accept": null,
+     "med_area_km2_accept": null
+    },
+    "m3": {
+     "n": 1200,
+     "n_accept": 0,
+     "acc_rate": 0.0,
+     "cov_all": 1.0,
+     "cov_accept": null,
+     "cov_reject": 1.0,
+     "med_frac_accept": null,
+     "p90_frac_accept": null,
+     "med_area_km2_accept": null
+    },
+    "seed0": {
+     "n": 1200,
+     "n_accept": 0,
+     "acc_rate": 0.0,
+     "cov_all": 1.0,
+     "cov_accept": null,
+     "cov_reject": 1.0,
+     "med_frac_accept": null,
+     "p90_frac_accept": null,
+     "med_area_km2_accept": null
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "cov_accept": null,
+    "cov_reject": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "med_frac_accept": null,
+    "p90_frac_accept": null
+   }
+  },
+  "IND-D (all bins, ref)": {
+   "arm": "LS@0.40",
+   "paper_action": "reference",
+   "per_model": {
+    "m0": {
+     "n": 1800,
+     "n_accept": 1726,
+     "acc_rate": 0.9589,
+     "cov_all": 0.9017,
+     "cov_accept": 0.898,
+     "cov_reject": 0.9865,
+     "med_frac_accept": 0.00127,
+     "p90_frac_accept": 0.0032,
+     "med_area_km2_accept": 0.254
+    },
+    "m1": {
+     "n": 1800,
+     "n_accept": 1718,
+     "acc_rate": 0.9544,
+     "cov_all": 0.905,
+     "cov_accept": 0.9022,
+     "cov_reject": 0.9634,
+     "med_frac_accept": 0.00181,
+     "p90_frac_accept": 0.00434,
+     "med_area_km2_accept": 0.364
+    },
+    "m2": {
+     "n": 1800,
+     "n_accept": 1727,
+     "acc_rate": 0.9594,
+     "cov_all": 0.9067,
+     "cov_accept": 0.9027,
+     "cov_reject": 1.0,
+     "med_frac_accept": 0.00142,
+     "p90_frac_accept": 0.00374,
+     "med_area_km2_accept": 0.285
+    },
+    "m3": {
+     "n": 1800,
+     "n_accept": 1725,
+     "acc_rate": 0.9583,
+     "cov_all": 0.9122,
+     "cov_accept": 0.9107,
+     "cov_reject": 0.9467,
+     "med_frac_accept": 0.00131,
+     "p90_frac_accept": 0.00332,
+     "med_area_km2_accept": 0.263
+    },
+    "seed0": {
+     "n": 1800,
+     "n_accept": 1725,
+     "acc_rate": 0.9583,
+     "cov_all": 0.9072,
+     "cov_accept": 0.9038,
+     "cov_reject": 0.9867,
+     "med_frac_accept": 0.00127,
+     "p90_frac_accept": 0.00317,
+     "med_area_km2_accept": 0.255
+    }
+   },
+   "summary": {
+    "acc_rate": {
+     "mean": 0.9579,
+     "min": 0.9544,
+     "max": 0.9594,
+     "n_models": 5
+    },
+    "cov_all": {
+     "mean": 0.9066,
+     "min": 0.9017,
+     "max": 0.9122,
+     "n_models": 5
+    },
+    "cov_accept": {
+     "mean": 0.9035,
+     "min": 0.898,
+     "max": 0.9107,
+     "n_models": 5
+    },
+    "cov_reject": {
+     "mean": 0.9767,
+     "min": 0.9467,
+     "max": 1.0,
+     "n_models": 5
+    },
+    "med_frac_accept": {
+     "mean": 0.0014,
+     "min": 0.0013,
+     "max": 0.0018,
+     "n_models": 5
+    },
+    "p90_frac_accept": {
+     "mean": 0.0036,
+     "min": 0.0032,
+     "max": 0.0043,
+     "n_models": 5
+    }
+   }
+  }
+ },
+ "tau_sweep": {
+  "in-dist low-SNR bin": {
+   "0.05": {
+    "acc_rate": [
+     0.7338,
+     0.7509
+    ],
+    "acc_rate_mean": 0.7447,
+    "cov_accept": [
+     0.8945,
+     0.9087
+    ],
+    "cov_accept_mean": 0.8992,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.7406,
+     0.7645
+    ],
+    "acc_rate_mean": 0.7556,
+    "cov_accept": [
+     0.8914,
+     0.8986
+    ],
+    "cov_accept_mean": 0.8943,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.7509,
+     0.7747
+    ],
+    "acc_rate_mean": 0.7679,
+    "cov_accept": [
+     0.8767,
+     0.9
+    ],
+    "cov_accept_mean": 0.8872,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.7543,
+     0.7782
+    ],
+    "acc_rate_mean": 0.77,
+    "cov_accept": [
+     0.8772,
+     0.8959
+    ],
+    "cov_accept_mean": 0.8866,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.7611,
+     0.7782
+    ],
+    "acc_rate_mean": 0.7727,
+    "cov_accept": [
+     0.8772,
+     0.8943
+    ],
+    "cov_accept_mean": 0.8852,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.7645,
+     0.7782
+    ],
+    "acc_rate_mean": 0.7754,
+    "cov_accept": [
+     0.8772,
+     0.8947
+    ],
+    "cov_accept_mean": 0.8856,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.7645,
+     0.785
+    ],
+    "acc_rate_mean": 0.7788,
+    "cov_accept": [
+     0.8777,
+     0.8957
+    ],
+    "cov_accept_mean": 0.8852,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.7713,
+     0.7884
+    ],
+    "acc_rate_mean": 0.7816,
+    "cov_accept": [
+     0.8745,
+     0.8957
+    ],
+    "cov_accept_mean": 0.8839,
+    "n_models_with_accepts": 5
+   }
+  },
+  "delay_3": {
+   "0.05": {
+    "acc_rate": [
+     0.3067,
+     0.4242
+    ],
+    "acc_rate_mean": 0.3672,
+    "cov_accept": [
+     0.5764,
+     0.7337
+    ],
+    "cov_accept_mean": 0.6227,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.3675,
+     0.495
+    ],
+    "acc_rate_mean": 0.4435,
+    "cov_accept": [
+     0.5374,
+     0.7438
+    ],
+    "cov_accept_mean": 0.6166,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.4208,
+     0.595
+    ],
+    "acc_rate_mean": 0.5212,
+    "cov_accept": [
+     0.5277,
+     0.7248
+    ],
+    "cov_accept_mean": 0.5854,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.4733,
+     0.6567
+    ],
+    "acc_rate_mean": 0.5692,
+    "cov_accept": [
+     0.5264,
+     0.6954
+    ],
+    "cov_accept_mean": 0.5752,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.5067,
+     0.6842
+    ],
+    "acc_rate_mean": 0.5983,
+    "cov_accept": [
+     0.5309,
+     0.6793
+    ],
+    "cov_accept_mean": 0.5742,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.525,
+     0.6975
+    ],
+    "acc_rate_mean": 0.6157,
+    "cov_accept": [
+     0.5309,
+     0.6714
+    ],
+    "cov_accept_mean": 0.577,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.5542,
+     0.7242
+    ],
+    "acc_rate_mean": 0.643,
+    "cov_accept": [
+     0.5378,
+     0.6737
+    ],
+    "cov_accept_mean": 0.5851,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.5692,
+     0.7383
+    ],
+    "acc_rate_mean": 0.6603,
+    "cov_accept": [
+     0.5433,
+     0.6794
+    ],
+    "cov_accept_mean": 0.5919,
+    "n_models_with_accepts": 5
+   }
+  },
+  "occ 0.05": {
+   "0.05": {
+    "acc_rate": [
+     0.5767,
+     0.7517
+    ],
+    "acc_rate_mean": 0.6496,
+    "cov_accept": [
+     0.8053,
+     0.9046
+    ],
+    "cov_accept_mean": 0.8541,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.6706,
+     0.845
+    ],
+    "acc_rate_mean": 0.7358,
+    "cov_accept": [
+     0.823,
+     0.918
+    ],
+    "cov_accept_mean": 0.8704,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.7256,
+     0.875
+    ],
+    "acc_rate_mean": 0.7818,
+    "cov_accept": [
+     0.8326,
+     0.9242
+    ],
+    "cov_accept_mean": 0.8776,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.7594,
+     0.8939
+    ],
+    "acc_rate_mean": 0.813,
+    "cov_accept": [
+     0.8401,
+     0.9276
+    ],
+    "cov_accept_mean": 0.8822,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.7806,
+     0.9061
+    ],
+    "acc_rate_mean": 0.8356,
+    "cov_accept": [
+     0.8458,
+     0.9295
+    ],
+    "cov_accept_mean": 0.8855,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.7972,
+     0.915
+    ],
+    "acc_rate_mean": 0.8502,
+    "cov_accept": [
+     0.8487,
+     0.931
+    ],
+    "cov_accept_mean": 0.8874,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.8239,
+     0.9317
+    ],
+    "acc_rate_mean": 0.8763,
+    "cov_accept": [
+     0.8541,
+     0.9332
+    ],
+    "cov_accept_mean": 0.8908,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.8417,
+     0.9428
+    ],
+    "acc_rate_mean": 0.8931,
+    "cov_accept": [
+     0.8578,
+     0.9347
+    ],
+    "cov_accept_mean": 0.8928,
+    "n_models_with_accepts": 5
+   }
+  },
+  "kf_3": {
+   "0.05": {
+    "acc_rate": [
+     0.605,
+     0.6867
+    ],
+    "acc_rate_mean": 0.6592,
+    "cov_accept": [
+     0.446,
+     0.5758
+    ],
+    "cov_accept_mean": 0.5058,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.6958,
+     0.7533
+    ],
+    "acc_rate_mean": 0.7273,
+    "cov_accept": [
+     0.4574,
+     0.5904
+    ],
+    "cov_accept_mean": 0.5146,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.7317,
+     0.78
+    ],
+    "acc_rate_mean": 0.7563,
+    "cov_accept": [
+     0.4657,
+     0.5957
+    ],
+    "cov_accept_mean": 0.5205,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.7467,
+     0.7917
+    ],
+    "acc_rate_mean": 0.7732,
+    "cov_accept": [
+     0.4733,
+     0.6004
+    ],
+    "cov_accept_mean": 0.5255,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.7683,
+     0.7992
+    ],
+    "acc_rate_mean": 0.7853,
+    "cov_accept": [
+     0.4803,
+     0.603
+    ],
+    "cov_accept_mean": 0.5282,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.775,
+     0.805
+    ],
+    "acc_rate_mean": 0.7918,
+    "cov_accept": [
+     0.4809,
+     0.6054
+    ],
+    "cov_accept_mean": 0.5296,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.7842,
+     0.8158
+    ],
+    "acc_rate_mean": 0.8013,
+    "cov_accept": [
+     0.4858,
+     0.6089
+    ],
+    "cov_accept_mean": 0.5331,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.7942,
+     0.8267
+    ],
+    "acc_rate_mean": 0.8097,
+    "cov_accept": [
+     0.4891,
+     0.6107
+    ],
+    "cov_accept_mean": 0.5351,
+    "n_models_with_accepts": 5
+   }
+  },
+  "TDL-A": {
+   "0.05": {
+    "acc_rate": [
+     0.2878,
+     0.3739
+    ],
+    "acc_rate_mean": 0.3289,
+    "cov_accept": [
+     0.4378,
+     0.5
+    ],
+    "cov_accept_mean": 0.4662,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.3789,
+     0.4867
+    ],
+    "acc_rate_mean": 0.4202,
+    "cov_accept": [
+     0.4465,
+     0.5235
+    ],
+    "cov_accept_mean": 0.4933,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.4294,
+     0.5439
+    ],
+    "acc_rate_mean": 0.4734,
+    "cov_accept": [
+     0.4647,
+     0.554
+    ],
+    "cov_accept_mean": 0.5153,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.4667,
+     0.5833
+    ],
+    "acc_rate_mean": 0.5139,
+    "cov_accept": [
+     0.4936,
+     0.5702
+    ],
+    "cov_accept_mean": 0.5366,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.4944,
+     0.61
+    ],
+    "acc_rate_mean": 0.5451,
+    "cov_accept": [
+     0.51,
+     0.5899
+    ],
+    "cov_accept_mean": 0.5532,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.525,
+     0.6383
+    ],
+    "acc_rate_mean": 0.5726,
+    "cov_accept": [
+     0.5231,
+     0.6089
+    ],
+    "cov_accept_mean": 0.567,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.5644,
+     0.6817
+    ],
+    "acc_rate_mean": 0.6131,
+    "cov_accept": [
+     0.5426,
+     0.6319
+    ],
+    "cov_accept_mean": 0.5882,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.6011,
+     0.7078
+    ],
+    "acc_rate_mean": 0.6444,
+    "cov_accept": [
+     0.5582,
+     0.6488
+    ],
+    "cov_accept_mean": 0.6036,
+    "n_models_with_accepts": 5
+   }
+  },
+  "TDL-C": {
+   "0.05": {
+    "acc_rate": [
+     0.2911,
+     0.385
+    ],
+    "acc_rate_mean": 0.3322,
+    "cov_accept": [
+     0.4414,
+     0.5286
+    ],
+    "cov_accept_mean": 0.479,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.3783,
+     0.4867
+    ],
+    "acc_rate_mean": 0.4261,
+    "cov_accept": [
+     0.4601,
+     0.5712
+    ],
+    "cov_accept_mean": 0.509,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.4317,
+     0.5478
+    ],
+    "acc_rate_mean": 0.4808,
+    "cov_accept": [
+     0.4862,
+     0.5907
+    ],
+    "cov_accept_mean": 0.5312,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.4694,
+     0.5833
+    ],
+    "acc_rate_mean": 0.5203,
+    "cov_accept": [
+     0.5026,
+     0.6047
+    ],
+    "cov_accept_mean": 0.5494,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.4994,
+     0.6122
+    ],
+    "acc_rate_mean": 0.5486,
+    "cov_accept": [
+     0.5125,
+     0.6207
+    ],
+    "cov_accept_mean": 0.5624,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.525,
+     0.635
+    ],
+    "acc_rate_mean": 0.5729,
+    "cov_accept": [
+     0.5268,
+     0.6381
+    ],
+    "cov_accept_mean": 0.5765,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.5633,
+     0.6711
+    ],
+    "acc_rate_mean": 0.6084,
+    "cov_accept": [
+     0.5445,
+     0.6605
+    ],
+    "cov_accept_mean": 0.5945,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.5967,
+     0.6972
+    ],
+    "acc_rate_mean": 0.6383,
+    "cov_accept": [
+     0.5589,
+     0.6769
+    ],
+    "cov_accept_mean": 0.6106,
+    "n_models_with_accepts": 5
+   }
+  },
+  "sco_4": {
+   "0.05": {
+    "acc_rate": [
+     0.9483,
+     0.9533
+    ],
+    "acc_rate_mean": 0.9523,
+    "cov_accept": [
+     0.8802,
+     0.8986
+    ],
+    "cov_accept_mean": 0.8892,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.9525,
+     0.9567
+    ],
+    "acc_rate_mean": 0.9553,
+    "cov_accept": [
+     0.8788,
+     0.8989
+    ],
+    "cov_accept_mean": 0.8885,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.9533,
+     0.9583
+    ],
+    "acc_rate_mean": 0.957,
+    "cov_accept": [
+     0.8782,
+     0.8983
+    ],
+    "cov_accept_mean": 0.888,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.9533,
+     0.96
+    ],
+    "acc_rate_mean": 0.9583,
+    "cov_accept": [
+     0.8776,
+     0.8976
+    ],
+    "cov_accept_mean": 0.8878,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.9575,
+     0.9608
+    ],
+    "acc_rate_mean": 0.9597,
+    "cov_accept": [
+     0.8777,
+     0.8976
+    ],
+    "cov_accept_mean": 0.8876,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.9592,
+     0.9608
+    ],
+    "acc_rate_mean": 0.9605,
+    "cov_accept": [
+     0.8777,
+     0.8977
+    ],
+    "cov_accept_mean": 0.8877,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.96,
+     0.9608
+    ],
+    "acc_rate_mean": 0.9607,
+    "cov_accept": [
+     0.8777,
+     0.8977
+    ],
+    "cov_accept_mean": 0.8878,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.96,
+     0.9617
+    ],
+    "acc_rate_mean": 0.961,
+    "cov_accept": [
+     0.8777,
+     0.8977
+    ],
+    "cov_accept_mean": 0.8878,
+    "n_models_with_accepts": 5
+   }
+  },
+  "cfo_4": {
+   "0.05": {
+    "acc_rate": [
+     0.0942,
+     0.1542
+    ],
+    "acc_rate_mean": 0.124,
+    "cov_accept": [
+     0.3351,
+     0.4602
+    ],
+    "cov_accept_mean": 0.3943,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.1375,
+     0.1842
+    ],
+    "acc_rate_mean": 0.161,
+    "cov_accept": [
+     0.3394,
+     0.4578
+    ],
+    "cov_accept_mean": 0.4005,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.1592,
+     0.2225
+    ],
+    "acc_rate_mean": 0.1895,
+    "cov_accept": [
+     0.3783,
+     0.4764
+    ],
+    "cov_accept_mean": 0.4223,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.1792,
+     0.2558
+    ],
+    "acc_rate_mean": 0.2132,
+    "cov_accept": [
+     0.4066,
+     0.4791
+    ],
+    "cov_accept_mean": 0.4432,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.1983,
+     0.2767
+    ],
+    "acc_rate_mean": 0.2318,
+    "cov_accept": [
+     0.4407,
+     0.4874
+    ],
+    "cov_accept_mean": 0.466,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.2125,
+     0.2925
+    ],
+    "acc_rate_mean": 0.2482,
+    "cov_accept": [
+     0.4615,
+     0.5058
+    ],
+    "cov_accept_mean": 0.4844,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.2425,
+     0.3175
+    ],
+    "acc_rate_mean": 0.2752,
+    "cov_accept": [
+     0.4908,
+     0.5563
+    ],
+    "cov_accept_mean": 0.5181,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.2617,
+     0.3467
+    ],
+    "acc_rate_mean": 0.2998,
+    "cov_accept": [
+     0.5216,
+     0.5828
+    ],
+    "cov_accept_mean": 0.5496,
+    "n_models_with_accepts": 5
+   }
+  },
+  "snr_2": {
+   "0.05": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.10": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.15": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.20": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.25": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.30": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.40": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   },
+   "0.50": {
+    "acc_rate": [
+     0.0,
+     0.0
+    ],
+    "acc_rate_mean": 0.0,
+    "cov_accept": null,
+    "cov_accept_mean": null,
+    "n_models_with_accepts": 0
+   }
+  },
+  "IND-D (all bins, ref)": {
+   "0.05": {
+    "acc_rate": [
+     0.9467,
+     0.9517
+    ],
+    "acc_rate_mean": 0.9502,
+    "cov_accept": [
+     0.9013,
+     0.9135
+    ],
+    "cov_accept_mean": 0.9061,
+    "n_models_with_accepts": 5
+   },
+   "0.10": {
+    "acc_rate": [
+     0.9494,
+     0.9567
+    ],
+    "acc_rate_mean": 0.954,
+    "cov_accept": [
+     0.9004,
+     0.9121
+    ],
+    "cov_accept_mean": 0.9046,
+    "n_models_with_accepts": 5
+   },
+   "0.15": {
+    "acc_rate": [
+     0.9533,
+     0.9589
+    ],
+    "acc_rate_mean": 0.9571,
+    "cov_accept": [
+     0.898,
+     0.9106
+    ],
+    "cov_accept_mean": 0.9035,
+    "n_models_with_accepts": 5
+   },
+   "0.20": {
+    "acc_rate": [
+     0.9544,
+     0.9594
+    ],
+    "acc_rate_mean": 0.9579,
+    "cov_accept": [
+     0.898,
+     0.9107
+    ],
+    "cov_accept_mean": 0.9035,
+    "n_models_with_accepts": 5
+   },
+   "0.25": {
+    "acc_rate": [
+     0.9556,
+     0.96
+    ],
+    "acc_rate_mean": 0.9588,
+    "cov_accept": [
+     0.8981,
+     0.9097
+    ],
+    "cov_accept_mean": 0.9032,
+    "n_models_with_accepts": 5
+   },
+   "0.30": {
+    "acc_rate": [
+     0.9561,
+     0.9617
+    ],
+    "acc_rate_mean": 0.9597,
+    "cov_accept": [
+     0.8976,
+     0.9093
+    ],
+    "cov_accept_mean": 0.9031,
+    "n_models_with_accepts": 5
+   },
+   "0.40": {
+    "acc_rate": [
+     0.9567,
+     0.9628
+    ],
+    "acc_rate_mean": 0.9611,
+    "cov_accept": [
+     0.8977,
+     0.9094
+    ],
+    "cov_accept_mean": 0.903,
+    "n_models_with_accepts": 5
+   },
+   "0.50": {
+    "acc_rate": [
+     0.9578,
+     0.9644
+    ],
+    "acc_rate_mean": 0.9621,
+    "cov_accept": [
+     0.8978,
+     0.909
+    ],
+    "cov_accept_mean": 0.9029,
+    "n_models_with_accepts": 5
+   }
+  }
+ }
+}

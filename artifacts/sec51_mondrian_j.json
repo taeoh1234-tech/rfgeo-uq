@@ -1,0 +1,33 @@
+{
+ "_note": "5.1절 SNR-이동 vs multipath 의 marginal/mondrian 커버리지 (자원 j, 표2 규약: 셀 평균 + [min,max])",
+ "levels": {
+  "snr_2": {
+   "marginal": {
+    "mean": 0.1572,
+    "min": 0.0717,
+    "max": 0.2083,
+    "n_cells": 10
+   },
+   "mondrian": {
+    "mean": 0.6608,
+    "min": 0.6017,
+    "max": 0.7267,
+    "n_cells": 10
+   }
+  },
+  "delay_3": {
+   "marginal": {
+    "mean": 0.1423,
+    "min": 0.1267,
+    "max": 0.17,
+    "n_cells": 10
+   },
+   "mondrian": {
+    "mean": 0.1985,
+    "min": 0.1833,
+    "max": 0.215,
+    "n_cells": 10
+   }
+  }
+ }
+}

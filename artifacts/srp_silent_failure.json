@@ -1,0 +1,70 @@
+{
+  "0.0": {
+    "delta_m": 0.0,
+    "median_err": 7.54105147271305,
+    "coverage_frozen_Q": 0.8866666666666667,
+    "psr_mean": 102.86755235204637,
+    "psr_median": 106.28812083752928,
+    "resid_median": 0.06815744371453018,
+    "auroc_neg_psr": NaN,
+    "auroc_resid": NaN,
+    "n": 600
+  },
+  "5.0": {
+    "delta_m": 5.0,
+    "median_err": 11.97188575778276,
+    "coverage_frozen_Q": 0.8583333333333333,
+    "psr_mean": 102.74114168984443,
+    "psr_median": 105.76616966813381,
+    "resid_median": 0.07517419167582665,
+    "auroc_neg_psr": 0.5012277777777778,
+    "auroc_resid": 0.5359416666666666,
+    "n": 600
+  },
+  "20.0": {
+    "delta_m": 20.0,
+    "median_err": 23.91678141575519,
+    "coverage_frozen_Q": 0.5233333333333333,
+    "psr_mean": 102.44126494323297,
+    "psr_median": 105.43390931583146,
+    "resid_median": 0.09731239505669931,
+    "auroc_neg_psr": 0.5016611111111111,
+    "auroc_resid": 0.6475333333333333,
+    "n": 600
+  },
+  "50.0": {
+    "delta_m": 50.0,
+    "median_err": 56.536503237787855,
+    "coverage_frozen_Q": 0.03666666666666667,
+    "psr_mean": 100.211428975333,
+    "psr_median": 104.63618371452095,
+    "resid_median": 0.15751692327044692,
+    "auroc_neg_psr": 0.5127361111111111,
+    "auroc_resid": 0.8102583333333333,
+    "n": 600
+  },
+  "100.0": {
+    "delta_m": 100.0,
+    "median_err": 154.19716203132302,
+    "coverage_frozen_Q": 0.005,
+    "psr_mean": 75.45947887636251,
+    "psr_median": 76.45790239880307,
+    "resid_median": 0.7169308247257378,
+    "auroc_neg_psr": 0.6379944444444444,
+    "auroc_resid": 0.9301222222222222,
+    "n": 600
+  },
+  "verdict": {
+    "coverage_drop": 0.8816666666666667,
+    "auroc_neg_psr": 0.6379944444444444,
+    "auroc_resid": 0.9301222222222222,
+    "frozen_Q_m": 24.891941436850175,
+    "reading": "L2 \uc9c0\uc9c0 \u2014 \ucee4\ubc84\ub9ac\uc9c0\ub294 \ubb34\ub108\uc9c0\ub294\ub370 PSR\uc740 \uc870\uc6a9\ud558\ub2e4. SRP+CP\ub3c4 \uc870\uc6a9\ud55c \uc2e4\ud328\ub97c \ud558\uba70, \uc9c4\ub2e8 \uacc4\uce35\uc740 \ucd94\uc815\uae30 \ubb34\uad00\ud558\uac8c \ud544\uc694\ud558\ub2e4",
+    "per_delta": {
+      "5.0": "\ucee4\ubc84\ub9ac\uc9c0 \uc720\uc9c0",
+      "20.0": "L2 \uc9c0\uc9c0 (\uc870\uc6a9\ud55c \uc2e4\ud328)",
+      "50.0": "L2 \uc9c0\uc9c0 (\uc870\uc6a9\ud55c \uc2e4\ud328)",
+      "100.0": "L2 \uc9c0\uc9c0 (\uc870\uc6a9\ud55c \uc2e4\ud328)"
+    }
+  }
+}

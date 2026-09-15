@@ -1,0 +1,112 @@
+{
+  "levels": [
+    0.8,
+    0.9,
+    0.95
+  ],
+  "elliptical": {
+    "0.80": {
+      "Q": 0.7484074545043815,
+      "empirical_coverage": 0.801,
+      "mean_area_m2": 497337.65625,
+      "median_area_m2": 320971.21875
+    },
+    "0.90": {
+      "Q": 1.1078939002333674,
+      "empirical_coverage": 0.9085,
+      "mean_area_m2": 1089861.875,
+      "median_area_m2": 703373.875
+    },
+    "0.95": {
+      "Q": 1.7706748709194038,
+      "empirical_coverage": 0.952,
+      "mean_area_m2": 2783894.5,
+      "median_area_m2": 1796666.75
+    }
+  },
+  "circular": {
+    "0.80": {
+      "Q": 0.5505678653717041,
+      "empirical_coverage": 0.813,
+      "mean_area_m2": 737225.0625
+    },
+    "0.90": {
+      "Q": 0.8601351380348206,
+      "empirical_coverage": 0.908,
+      "mean_area_m2": 1799333.875
+    },
+    "0.95": {
+      "Q": 1.4095938205718994,
+      "empirical_coverage": 0.9505,
+      "mean_area_m2": 4832438.5
+    }
+  },
+  "der_alone": {
+    "0.80": {
+      "empirical_coverage": 0.9525,
+      "mean_area_m2": 2858112.816752494
+    },
+    "0.90": {
+      "empirical_coverage": 0.9625,
+      "mean_area_m2": 4089035.0072569083
+    },
+    "0.95": {
+      "empirical_coverage": 0.9705,
+      "mean_area_m2": 5319957.197761321
+    }
+  },
+  "coupling_r": 1.0,
+  "by_snr": [
+    {
+      "snr_bin": "[-10,-5)",
+      "n": 318,
+      "ell_coverage": 0.6226415094339622,
+      "ell_mean_area_m2": 2958863.0,
+      "circ_coverage": 0.6383647798742138,
+      "circ_mean_area_m2": 4312039.0
+    },
+    {
+      "snr_bin": "[-5,0)",
+      "n": 336,
+      "ell_coverage": 0.8809523809523809,
+      "ell_mean_area_m2": 901044.0,
+      "circ_coverage": 0.8839285714285714,
+      "circ_mean_area_m2": 1631008.625
+    },
+    {
+      "snr_bin": "[0,5)",
+      "n": 375,
+      "ell_coverage": 0.9786666666666667,
+      "ell_mean_area_m2": 697070.875,
+      "circ_coverage": 0.9706666666666667,
+      "circ_mean_area_m2": 1229477.5
+    },
+    {
+      "snr_bin": "[5,10)",
+      "n": 367,
+      "ell_coverage": 0.989100817438692,
+      "ell_mean_area_m2": 679106.4375,
+      "circ_coverage": 0.9836512261580381,
+      "circ_mean_area_m2": 1264044.375
+    },
+    {
+      "snr_bin": "[10,15)",
+      "n": 318,
+      "ell_coverage": 0.9842767295597484,
+      "ell_mean_area_m2": 689164.3125,
+      "circ_coverage": 0.9811320754716981,
+      "circ_mean_area_m2": 1229818.625
+    },
+    {
+      "snr_bin": "[15,20)",
+      "n": 286,
+      "ell_coverage": 0.9790209790209791,
+      "ell_mean_area_m2": 721212.3125,
+      "circ_coverage": 0.9755244755244755,
+      "circ_mean_area_m2": 1270558.375
+    }
+  ],
+  "cp_Q_ell_90": 1.1078939002333674,
+  "cp_Q_circ_90": 0.8601351380348206,
+  "area_reduction_pct_90": 39.4296989440918
+}

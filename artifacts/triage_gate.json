@@ -1,0 +1,125 @@
+{
+ "_note": "표 2 배정에 대한 런타임 게이트(교정 영역 / 탐색 원반)의 분리도. '옳게 가른다'는 판정 기준이 정의되지 않아 측정 대상이 아니다 - 측정하는 것은 두 부류의 분리 폭이다.",
+ "tau": 0.2,
+ "n_conditions": 9,
+ "rows": [
+  {
+   "condition": "in-dist low-SNR bin",
+   "signal": "LS",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.6666,
+   "repaired_cov": 0.9094,
+   "region_frac_disc": 0.0014,
+   "region_pct": 0.1,
+   "source": "corrector_final_derived (Table 2 in-dist row)"
+  },
+  {
+   "condition": "delay_3",
+   "signal": "RULE",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.1423,
+   "repaired_cov": 0.7108,
+   "region_frac_disc": 0.1232,
+   "region_pct": 12.3,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "occ 0.05",
+   "signal": "PHI",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.4991,
+   "repaired_cov": 0.9037,
+   "region_frac_disc": 0.0178,
+   "region_pct": 1.8,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "kf_3",
+   "signal": "ENERGY",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.1893,
+   "repaired_cov": 0.6207,
+   "region_frac_disc": 0.0198,
+   "region_pct": 2.0,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "TDL-A",
+   "signal": "ENERGY",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.1897,
+   "repaired_cov": 0.7413,
+   "region_frac_disc": 0.1783,
+   "region_pct": 17.8,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "TDL-C",
+   "signal": "ENERGY",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.1982,
+   "repaired_cov": 0.7477,
+   "region_frac_disc": 0.1849,
+   "region_pct": 18.5,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "sco_4",
+   "signal": "ENERGY",
+   "paper_action": "repair",
+   "gate_action": "repair",
+   "agrees": true,
+   "base_cov": 0.9025,
+   "repaired_cov": 0.8922,
+   "region_frac_disc": 0.0013,
+   "region_pct": 0.1,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "cfo_4",
+   "signal": "ENERGY",
+   "paper_action": "abstain",
+   "gate_action": "abstain",
+   "agrees": true,
+   "base_cov": 0.1687,
+   "repaired_cov": 0.86,
+   "region_frac_disc": 2.3493,
+   "region_pct": 234.9,
+   "source": "sec53_derived_j.pairs"
+  },
+  {
+   "condition": "snr_2",
+   "signal": "ENERGY",
+   "paper_action": "abstain",
+   "gate_action": "abstain",
+   "agrees": true,
+   "base_cov": 0.1572,
+   "repaired_cov": 1.0,
+   "region_frac_disc": 4.6923,
+   "region_pct": 469.2,
+   "source": "sec53_derived_j.pairs"
+  }
+ ],
+ "separation": {
+  "max_region_among_repair": 0.1849,
+  "min_region_among_abstain": 2.3493,
+  "ratio": 12.71,
+  "tau_safe_interval": [
+   0.1849,
+   2.3493
+  ],
+  "agree_at_tau": 9
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "stored_linear": {
+    "median": 21.27210801612591,
+    "p90": 51.21897963808458,
+    "mean": 27.458971540083816,
+    "n": 60
+  },
+  "stored_fft8": {
+    "median": 7.881260481287443,
+    "p90": 27.105464688818916,
+    "mean": 12.349407581476042,
+    "n": 60
+  },
+  "direct_exact": {
+    "median": 6.980884034468923,
+    "p90": 27.105464688818916,
+    "mean": 12.06749474899399,
+    "n": 60
+  },
+  "verdict": {
+    "relative_diff": 0.1289774249755198,
+    "validated": true,
+    "reading": "VALIDATED \u2014 the truncation window is harmless; the sinc-interpolation gain is real and the C1 SRP baseline was genuinely under-tuned"
+  }
+}

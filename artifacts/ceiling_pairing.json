@@ -1,0 +1,66 @@
+{
+ "_note": "정규화기(RULE kappa=0.6)의 delay_3 복원 커버리지 vs 각 모델 자신의 고정점수 천장 1-beta*. 짝지은 비교. 5.3절 'past the fixed-score ceiling' 의 근거. kappa 스윕은 포화 부재(=게이트 구속)의 근거.",
+ "rows": [
+  {
+   "model": "m0",
+   "beta_star": 0.4175,
+   "ceiling": 0.5825,
+   "repaired_cov": 0.6342,
+   "margin": 0.0517,
+   "exceeds": true,
+   "n_gensets": 2
+  },
+  {
+   "model": "m1",
+   "beta_star": 0.3408,
+   "ceiling": 0.6592,
+   "repaired_cov": 0.7892,
+   "margin": 0.13,
+   "exceeds": true,
+   "n_gensets": 2
+  },
+  {
+   "model": "m2",
+   "beta_star": 0.2825,
+   "ceiling": 0.7175,
+   "repaired_cov": 0.6475,
+   "margin": -0.07,
+   "exceeds": false,
+   "n_gensets": 2
+  },
+  {
+   "model": "m3",
+   "beta_star": 0.4108,
+   "ceiling": 0.5892,
+   "repaired_cov": 0.685,
+   "margin": 0.0958,
+   "exceeds": true,
+   "n_gensets": 2
+  },
+  {
+   "model": "seed0",
+   "beta_star": 0.4692,
+   "ceiling": 0.5308,
+   "repaired_cov": 0.7275,
+   "margin": 0.1967,
+   "exceeds": true,
+   "n_gensets": 2
+  }
+ ],
+ "n_exceed": 4,
+ "n_models": 5,
+ "pooled": {
+  "beta_star_mean": 0.3842,
+  "cov_mean": 0.6967
+ },
+ "kappa_sweep_delay3": {
+  "0.45": {
+   "cov_mean": 0.5625,
+   "disc_med": 0.0551
+  },
+  "0.6": {
+   "cov_mean": 0.6967,
+   "disc_med": 0.1347
+  }
+ }
+}
