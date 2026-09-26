@@ -253,4 +253,4 @@ a reader should check for themselves:
 
 *(BibTeX entry to be added on acceptance.)*
 
-*(License to be added — choose one before making the repository public.)*
+This repository is released under the MIT License. See `LICENSE` for details.
